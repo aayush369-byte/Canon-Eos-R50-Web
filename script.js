@@ -1,38 +1,31 @@
-/* =========================================================
-   EOS R50 — INTERACTION ENGINE
-========================================================= */
+/* =====================================================
+   PAGE LOADER
+===================================================== */
+
+window.addEventListener("load", () => {
+
+    const loader =
+        document.getElementById("loader");
+
+    setTimeout(() => {
+
+        loader.classList.add("hidden");
+
+    }, 650);
+
+});
 
 
-/* =========================================================
-   01 — SMOOTH SCROLL
-========================================================= */
-
-function scrollToSection(id) {
-
-    const section =
-        document.getElementById(id);
-
-    if (!section) return;
-
-    section.scrollIntoView({
-        behavior: "smooth"
-    });
-
-}
-
-
-
-/* =========================================================
-   02 — NAVBAR
-========================================================= */
+/* =====================================================
+   NAVBAR
+===================================================== */
 
 const navbar =
     document.getElementById("navbar");
 
-
 window.addEventListener("scroll", () => {
 
-    if (window.scrollY > 80) {
+    if (window.scrollY > 40) {
 
         navbar.classList.add("scrolled");
 
@@ -45,318 +38,397 @@ window.addEventListener("scroll", () => {
 });
 
 
+/* =====================================================
+   MOBILE MENU
+===================================================== */
 
-/* =========================================================
-   03 — PAGE PROGRESS
-========================================================= */
+const menuButton =
+    document.getElementById("menuButton");
 
-const progressBar =
-    document.getElementById("progressBar");
+const mobileNav =
+    document.getElementById("mobileNav");
+
+const mobileNavLinks =
+    mobileNav.querySelectorAll("a");
 
 
-window.addEventListener("scroll", () => {
+menuButton.addEventListener("click", () => {
 
-    const scrollTop =
-        window.scrollY;
-
-    const documentHeight =
-        document.documentElement.scrollHeight
-        - window.innerHeight;
-
-    const percentage =
-        (scrollTop / documentHeight) * 100;
-
-    progressBar.style.width =
-        percentage + "%";
+    mobileNav.classList.toggle("active");
 
 });
 
 
+mobileNavLinks.forEach(link => {
 
-/* =========================================================
-   04 — ANGLE DATA
-========================================================= */
+    link.addEventListener("click", () => {
 
-const angleData = {
+        mobileNav.classList.remove("active");
 
-    FRONT: {
-        description:
-            "The EOS R50 from the front, highlighting the compact camera body and RF lens."
-    },
-
-    SIDE: {
-        description:
-            "A side perspective revealing the compact ergonomic body and connection layout."
-    },
-
-    DISPLAY: {
-        description:
-            "Explore the rear display and the camera's creator-focused interface."
-    },
-
-    LENS: {
-        description:
-            "A closer look at the RF-S 18–45mm lens system and optical design."
-    }
-
-};
-
-
-
-/* =========================================================
-   05 — ANGLE SELECTOR
-========================================================= */
-
-const angleButtons =
-    document.querySelectorAll(".angle-button");
-
-
-const interactiveImage =
-    document.getElementById(
-        "interactiveImage"
-    );
-
-
-const angleNumber =
-    document.getElementById(
-        "angleNumber"
-    );
-
-
-const angleDescription =
-    document.getElementById(
-        "angleDescription"
-    );
-
-
-angleButtons.forEach(button => {
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            const image =
-                button.dataset.image;
-
-            const title =
-                button.dataset.title;
-
-            const number =
-                button.dataset.number;
-
-
-            /*
-             * Fade image out
-             */
-
-            interactiveImage.classList.add(
-                "changing"
-            );
-
-
-            setTimeout(() => {
-
-                interactiveImage.src =
-                    image;
-
-                interactiveImage.alt =
-                    "EOS R50 " + title;
-
-
-                angleNumber.textContent =
-                    number;
-
-
-                angleDescription.textContent =
-                    angleData[title].description;
-
-
-                interactiveImage.classList.remove(
-                    "changing"
-                );
-
-            }, 250);
-
-
-            /*
-             * Update active button
-             */
-
-            angleButtons.forEach(item => {
-
-                item.classList.remove(
-                    "active"
-                );
-
-            });
-
-
-            button.classList.add(
-                "active"
-            );
-
-        }
-    );
+    });
 
 });
 
 
-
-/* =========================================================
-   06 — CAMERA MOUSE PARALLAX
-========================================================= */
-
-const cameraStage =
-    document.getElementById(
-        "interactiveCamera"
-    );
-
-
-const cameraImage =
-    document.getElementById(
-        "interactiveImage"
-    );
-
-
-if (cameraStage) {
-
-    cameraStage.addEventListener(
-        "mousemove",
-        (event) => {
-
-            const rect =
-                cameraStage.getBoundingClientRect();
-
-
-            const x =
-                event.clientX - rect.left;
-
-
-            const y =
-                event.clientY - rect.top;
-
-
-            const centerX =
-                rect.width / 2;
-
-
-            const centerY =
-                rect.height / 2;
-
-
-            const rotateY =
-                ((x - centerX) / centerX) * 5;
-
-
-            const rotateX =
-                ((y - centerY) / centerY) * -4;
-
-
-            cameraImage.style.transform = `
-                perspective(1200px)
-                rotateX(${rotateX}deg)
-                rotateY(${rotateY}deg)
-                scale(1.035)
-            `;
-
-        }
-    );
-
-
-    cameraStage.addEventListener(
-        "mouseleave",
-        () => {
-
-            cameraImage.style.transform = `
-                perspective(1200px)
-                rotateX(0deg)
-                rotateY(0deg)
-                scale(1)
-            `;
-
-        }
-    );
-
-}
-
-
-
-/* =========================================================
-   07 — IMAGE ZOOM
-========================================================= */
-
-const zoomButton =
-    document.getElementById(
-        "zoomButton"
-    );
-
-
-let zoomed = false;
-
-
-if (zoomButton) {
-
-    zoomButton.addEventListener(
-        "click",
-        () => {
-
-            zoomed = !zoomed;
-
-
-            if (zoomed) {
-
-                cameraImage.classList.add(
-                    "zoomed"
-                );
-
-                zoomButton.textContent =
-                    "−";
-
-            } else {
-
-                cameraImage.classList.remove(
-                    "zoomed"
-                );
-
-                zoomButton.textContent =
-                    "+";
-
-            }
-
-        }
-    );
-
-}
-
-
-
-/* =========================================================
-   08 — HERO VIDEO PARALLAX
-========================================================= */
+/* =====================================================
+   HERO VIDEO
+===================================================== */
 
 const heroVideo =
-    document.querySelector(
-        ".hero-video"
+    document.querySelector(".hero-video");
+
+if (heroVideo) {
+
+    heroVideo.addEventListener(
+        "loadeddata",
+        () => {
+
+            heroVideo
+                .play()
+                .catch(() => {});
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   GALLERY
+===================================================== */
+
+const galleryCards =
+    document.querySelectorAll(
+        ".gallery-card"
     );
 
 
-window.addEventListener(
-    "scroll",
-    () => {
+const galleryItems =
+    Array.from(galleryCards).map(card => ({
 
-        if (!heroVideo) return;
+        image:
+            card.dataset.image,
+
+        title:
+            card.dataset.title,
+
+        description:
+            card.dataset.description
+
+    }));
 
 
-        const scroll =
-            window.scrollY;
+/* =====================================================
+   VIEWER ELEMENTS
+===================================================== */
+
+const viewer =
+    document.getElementById("viewer");
+
+const viewerImage =
+    document.getElementById("viewerImage");
+
+const viewerTitle =
+    document.getElementById("viewerTitle");
+
+const viewerDescription =
+    document.getElementById(
+        "viewerDescription"
+    );
+
+const viewerCount =
+    document.getElementById(
+        "viewerCount"
+    );
+
+const viewerNumber =
+    document.getElementById(
+        "viewerNumber"
+    );
+
+const viewerProgress =
+    document.getElementById(
+        "viewerProgress"
+    );
+
+const viewerClose =
+    document.getElementById(
+        "viewerClose"
+    );
+
+const viewerPrevious =
+    document.getElementById(
+        "viewerPrevious"
+    );
+
+const viewerNext =
+    document.getElementById(
+        "viewerNext"
+    );
 
 
-        if (scroll < window.innerHeight) {
+let currentImage = 0;
 
-            heroVideo.style.transform = `
-                scale(1.02)
-                translateY(${scroll * 0.08}px)
-            `;
+
+/* =====================================================
+   FORMAT NUMBER
+===================================================== */
+
+function formatNumber(number) {
+
+    return String(number)
+        .padStart(2, "0");
+
+}
+
+
+/* =====================================================
+   UPDATE VIEWER
+===================================================== */
+
+function updateViewer(direction = 1) {
+
+    const item =
+        galleryItems[currentImage];
+
+
+    /*
+     * Start transition.
+     */
+
+    viewerImage.classList.remove(
+        "visible"
+    );
+
+
+    viewerImage.style.transform =
+        direction >= 0
+            ? "translateX(30px) scale(.97)"
+            : "translateX(-30px) scale(.97)";
+
+
+    setTimeout(() => {
+
+
+        /*
+         * Change image.
+         */
+
+        viewerImage.src =
+            item.image;
+
+        viewerImage.alt =
+            `EOS R50 ${item.title}`;
+
+
+        /*
+         * Change text.
+         */
+
+        viewerTitle.textContent =
+            item.title;
+
+        viewerDescription.textContent =
+            item.description;
+
+
+        /*
+         * Change counters.
+         */
+
+        viewerNumber.textContent =
+            formatNumber(
+                currentImage + 1
+            );
+
+
+        viewerCount.textContent =
+            `${formatNumber(currentImage + 1)} / ${formatNumber(galleryItems.length)}`;
+
+
+        /*
+         * Change progress.
+         */
+
+        const progress =
+            (
+                (currentImage + 1)
+                /
+                galleryItems.length
+            ) * 100;
+
+
+        viewerProgress.style.width =
+            `${progress}%`;
+
+
+        /*
+         * Animate image back in.
+         */
+
+        requestAnimationFrame(() => {
+
+            viewerImage.style.transform =
+                "translateX(0) scale(1)";
+
+            viewerImage.classList.add(
+                "visible"
+            );
+
+        });
+
+    }, 220);
+
+}
+
+
+/* =====================================================
+   OPEN VIEWER
+===================================================== */
+
+function openViewer(index) {
+
+    currentImage = index;
+
+    viewer.classList.add(
+        "active"
+    );
+
+    viewer.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.classList.add(
+        "viewer-open"
+    );
+
+    updateViewer();
+
+}
+
+
+/* =====================================================
+   CLOSE VIEWER
+===================================================== */
+
+function closeViewer() {
+
+    viewer.classList.remove(
+        "active"
+    );
+
+    viewer.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.classList.remove(
+        "viewer-open"
+    );
+
+}
+
+
+/* =====================================================
+   GALLERY CARD CLICKS
+===================================================== */
+
+galleryCards.forEach(
+    (card, index) => {
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                openViewer(index);
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+function nextImage() {
+
+    currentImage++;
+
+    if (
+        currentImage >=
+        galleryItems.length
+    ) {
+
+        currentImage = 0;
+
+    }
+
+    updateViewer(1);
+
+}
+
+
+/* =====================================================
+   PREVIOUS
+===================================================== */
+
+function previousImage() {
+
+    currentImage--;
+
+    if (currentImage < 0) {
+
+        currentImage =
+            galleryItems.length - 1;
+
+    }
+
+    updateViewer(-1);
+
+}
+
+
+/* =====================================================
+   VIEWER BUTTONS
+===================================================== */
+
+viewerNext.addEventListener(
+    "click",
+    nextImage
+);
+
+viewerPrevious.addEventListener(
+    "click",
+    previousImage
+);
+
+viewerClose.addEventListener(
+    "click",
+    closeViewer
+);
+
+
+/* =====================================================
+   VIEWER BACKGROUND CLICK
+===================================================== */
+
+viewer.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target === viewer ||
+            event.target ===
+            document.querySelector(
+                ".viewer-bg"
+            )
+        ) {
+
+            closeViewer();
 
         }
 
@@ -364,318 +436,235 @@ window.addEventListener(
 );
 
 
+/* =====================================================
+   KEYBOARD CONTROLS
+===================================================== */
 
-/* =========================================================
-   09 — EXPLODED VIEW PARALLAX
-========================================================= */
+document.addEventListener(
+    "keydown",
+    event => {
 
-const explodedContainer =
-    document.getElementById(
-        "explodedContainer"
-    );
+        if (
+            !viewer.classList.contains(
+                "active"
+            )
+        ) {
 
-
-const explodedImage =
-    document.querySelector(
-        ".exploded-image"
-    );
-
-
-if (explodedContainer) {
-
-    explodedContainer.addEventListener(
-        "mousemove",
-        (event) => {
-
-            const rect =
-                explodedContainer
-                .getBoundingClientRect();
-
-
-            const x =
-                event.clientX -
-                rect.left;
-
-
-            const y =
-                event.clientY -
-                rect.top;
-
-
-            const centerX =
-                rect.width / 2;
-
-
-            const centerY =
-                rect.height / 2;
-
-
-            const moveX =
-                (x - centerX) * 0.015;
-
-
-            const moveY =
-                (y - centerY) * 0.015;
-
-
-            explodedImage.style.transform = `
-                translate(${moveX}px, ${moveY}px)
-                scale(1.02)
-            `;
+            return;
 
         }
-    );
 
 
-    explodedContainer.addEventListener(
-        "mouseleave",
-        () => {
+        if (
+            event.key === "Escape"
+        ) {
 
-            explodedImage.style.transform =
-                "translate(0,0) scale(1)";
+            closeViewer();
 
         }
-    );
-
-}
 
 
+        if (
+            event.key === "ArrowRight"
+        ) {
 
-/* =========================================================
-   10 — SCROLL REVEAL
-========================================================= */
+            nextImage();
+
+        }
+
+
+        if (
+            event.key === "ArrowLeft"
+        ) {
+
+            previousImage();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   TOUCH SWIPE
+===================================================== */
+
+let touchStartX = 0;
+
+let touchEndX = 0;
+
+
+viewer.addEventListener(
+    "touchstart",
+    event => {
+
+        touchStartX =
+            event.changedTouches[0]
+                .screenX;
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+viewer.addEventListener(
+    "touchend",
+    event => {
+
+        touchEndX =
+            event.changedTouches[0]
+                .screenX;
+
+        const distance =
+            touchEndX - touchStartX;
+
+
+        if (
+            Math.abs(distance) < 50
+        ) {
+
+            return;
+
+        }
+
+
+        if (distance < 0) {
+
+            nextImage();
+
+        } else {
+
+            previousImage();
+
+        }
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+/* =====================================================
+   PRELOAD GALLERY IMAGES
+===================================================== */
+
+galleryItems.forEach(item => {
+
+    const image =
+        new Image();
+
+    image.src =
+        item.image;
+
+});
+
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
 
 const revealElements =
     document.querySelectorAll(
-        ".reveal"
+        ".overview-content, " +
+        ".large-image-frame, " +
+        ".gallery-intro, " +
+        ".gallery-card, " +
+        ".angles-heading, " +
+        ".angles-view, " +
+        ".exploded-copy, " +
+        ".exploded-image, " +
+        ".unboxing-heading, " +
+        ".unboxing-video, " +
+        ".details-heading, " +
+        ".spec-row, " +
+        ".final-copy"
     );
 
 
 const revealObserver =
     new IntersectionObserver(
-        (entries) => {
+        entries => {
 
-            entries.forEach(
-                (entry) => {
+            entries.forEach(entry => {
 
-                    if (
-                        entry.isIntersecting
-                    ) {
+                if (
+                    entry.isIntersecting
+                ) {
 
-                        entry.target.classList.add(
-                            "visible"
-                        );
+                    entry.target.classList.add(
+                        "revealed"
+                    );
 
-                        revealObserver.unobserve(
-                            entry.target
-                        );
-
-                    }
+                    revealObserver.unobserve(
+                        entry.target
+                    );
 
                 }
-            );
+
+            });
 
         },
         {
-            threshold: 0.15
+            threshold: 0.08
         }
     );
 
 
-revealElements.forEach(
-    element => {
+revealElements.forEach(element => {
 
-        revealObserver.observe(
-            element
-        );
-
-    }
-);
-
-
-
-/* =========================================================
-   11 — UNBOXING VIDEO AUTOPLAY WHEN VISIBLE
-========================================================= */
-
-const unboxingVideo =
-    document.getElementById(
-        "unboxingVideo"
+    element.classList.add(
+        "reveal"
     );
 
-
-if (unboxingVideo) {
-
-    const videoObserver =
-        new IntersectionObserver(
-            entries => {
-
-                entries.forEach(
-                    entry => {
-
-                        if (
-                            entry.isIntersecting
-                        ) {
-
-                            /*
-                             * Browser may allow
-                             * muted autoplay.
-                             */
-
-                            unboxingVideo.play()
-                                .catch(() => {});
-
-                        }
-
-                    }
-                );
-
-            },
-            {
-                threshold: 0.5
-            }
-        );
-
-
-    videoObserver.observe(
-        unboxingVideo
+    revealObserver.observe(
+        element
     );
 
-}
+});
 
 
+/* =====================================================
+   SMOOTH NAVIGATION
+===================================================== */
 
-/* =========================================================
-   12 — HERO VIDEO TIME
-========================================================= */
+document
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
+    .forEach(link => {
 
-const mainVideo =
-    document.getElementById(
-        "mainVideo"
-    );
+        link.addEventListener(
+            "click",
+            event => {
 
-
-const videoTime =
-    document.getElementById(
-        "videoTime"
-    );
-
-
-if (mainVideo && videoTime) {
-
-    mainVideo.addEventListener(
-        "timeupdate",
-        () => {
-
-            const current =
-                Math.floor(
-                    mainVideo.currentTime
-                );
-
-
-            const duration =
-                Math.floor(
-                    mainVideo.duration || 5
-                );
-
-
-            videoTime.textContent =
-                `00:${String(current).padStart(2,"0")}
-                / 00:${String(duration).padStart(2,"0")}`;
-
-        }
-    );
-
-}
-
-
-
-/* =========================================================
-   13 — TOUCH SUPPORT
-========================================================= */
-
-let touchStartX = 0;
-
-
-if (cameraStage) {
-
-    cameraStage.addEventListener(
-        "touchstart",
-        event => {
-
-            touchStartX =
-                event.touches[0].clientX;
-
-        }
-    );
-
-
-    cameraStage.addEventListener(
-        "touchend",
-        event => {
-
-            const touchEndX =
-                event.changedTouches[0].clientX;
-
-
-            const difference =
-                touchEndX - touchStartX;
-
-
-            if (Math.abs(difference) < 50) {
-                return;
-            }
-
-
-            const current =
-                [...angleButtons]
-                .findIndex(
-                    button =>
-                        button.classList
-                            .contains("active")
-                );
-
-
-            if (difference < 0) {
-
-                const next =
-                    Math.min(
-                        current + 1,
-                        angleButtons.length - 1
+                const targetId =
+                    link.getAttribute(
+                        "href"
                     );
 
-                angleButtons[next].click();
-
-            } else {
-
-                const previous =
-                    Math.max(
-                        current - 1,
-                        0
+                const target =
+                    document.querySelector(
+                        targetId
                     );
 
-                angleButtons[previous].click();
+
+                if (!target) {
+                    return;
+                }
+
+
+                event.preventDefault();
+
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
 
             }
-
-        }
-    );
-
-}
-
-
-
-/* =========================================================
-   14 — PAGE LOAD
-========================================================= */
-
-window.addEventListener(
-    "load",
-    () => {
-
-        document.body.classList.add(
-            "loaded"
         );
 
-    }
-);
+    });
