@@ -1,0 +1,1144 @@
+/* =========================================================
+   EOS R50 — ADVANCED INTERACTION STYLES
+========================================================= */
+
+
+/* =========================================================
+   HERO GRID
+========================================================= */
+
+.hero-grid {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    opacity: 0.08;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.15) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.15) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        80px 80px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent
+        );
+}
+
+
+/* =========================================================
+   HERO CORNERS
+========================================================= */
+
+.hero-corner {
+
+    position: absolute;
+
+    z-index: 3;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    opacity: 0.35;
+
+}
+
+.top-left {
+
+    top: 110px;
+
+    left: 5vw;
+
+}
+
+.bottom-right {
+
+    right: 5vw;
+
+    bottom: 30px;
+
+}
+
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+.nav-progress {
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 100%;
+
+    height: 1px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+}
+
+.nav-progress span {
+
+    display: block;
+
+    width: 0%;
+
+    height: 100%;
+
+    background: #ffffff;
+
+    transition:
+        width 0.1s linear;
+
+}
+
+
+/* =========================================================
+   INTRO NUMBER
+========================================================= */
+
+.intro {
+
+    position: relative;
+
+}
+
+.intro-number {
+
+    position: absolute;
+
+    top: 80px;
+
+    right: 8vw;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    opacity: 0.3;
+
+}
+
+
+/* =========================================================
+   CAMERA STAGE
+========================================================= */
+
+.camera-stage {
+
+    position: relative;
+
+    max-width: 1400px;
+
+    height: 68vh;
+
+    min-height: 450px;
+
+    margin:
+        70px auto 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+}
+
+
+.camera-stage video {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    filter:
+        contrast(1.05)
+        saturate(0.9);
+
+}
+
+
+.stage-glow {
+
+    position: absolute;
+
+    width: 55%;
+
+    height: 35%;
+
+    left: 22.5%;
+
+    bottom: 10%;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    filter:
+        blur(80px);
+
+}
+
+
+.stage-crosshair {
+
+    position: absolute;
+
+    z-index: 4;
+
+    inset: 10%;
+
+    pointer-events: none;
+
+    opacity: 0.18;
+
+}
+
+
+.stage-crosshair span:first-child {
+
+    position: absolute;
+
+    width: 35px;
+
+    height: 35px;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border:
+        1px solid white;
+
+    border-radius: 50%;
+
+}
+
+
+.stage-crosshair span:last-child {
+
+    position: absolute;
+
+    width: 1px;
+
+    height: 100%;
+
+    left: 50%;
+
+    top: 0;
+
+    background: white;
+
+    opacity: 0.3;
+
+}
+
+
+.stage-info {
+
+    max-width: 1400px;
+
+    margin:
+        0 auto;
+
+    padding-top: 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.15);
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    opacity: 0.45;
+
+}
+
+
+/* =========================================================
+   ANGLE EXPLORER
+========================================================= */
+
+.angle-explorer {
+
+    max-width: 1400px;
+
+    min-height: 700px;
+
+    margin:
+        100px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        0.7fr 1.7fr;
+
+    background: #0d0d0d;
+
+}
+
+
+.angle-controls {
+
+    padding: 55px 40px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    border-right:
+        1px solid
+        rgba(255,255,255,0.1);
+
+}
+
+
+.angle-intro {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    opacity: 0.45;
+
+}
+
+
+.angle-button {
+
+    position: relative;
+
+    padding:
+        28px 5px;
+
+    border: none;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    background: transparent;
+
+    color: white;
+
+    text-align: left;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition:
+        padding 0.35s ease,
+        opacity 0.35s ease;
+
+}
+
+
+.angle-button span {
+
+    display: inline-block;
+
+    width: 40px;
+
+    font-size: 8px;
+
+    opacity: 0.35;
+
+}
+
+
+.angle-button:hover {
+
+    padding-left: 15px;
+
+}
+
+
+.angle-button.active {
+
+    opacity: 1;
+
+}
+
+
+.angle-button:not(.active) {
+
+    opacity: 0.4;
+
+}
+
+
+.angle-description {
+
+    margin-top: 40px;
+
+    max-width: 280px;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    opacity: 0.4;
+
+}
+
+
+/* =========================================================
+   INTERACTIVE CAMERA
+========================================================= */
+
+.interactive-camera {
+
+    position: relative;
+
+    min-height: 650px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    perspective: 1200px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #292929 0%,
+            #151515 38%,
+            #090909 75%
+        );
+
+}
+
+
+.camera-grid {
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0.05;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.4) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.4) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        70px 70px;
+
+}
+
+
+.camera-shadow {
+
+    position: absolute;
+
+    width: 55%;
+
+    height: 18%;
+
+    bottom: 18%;
+
+    left: 22.5%;
+
+    border-radius: 50%;
+
+    background:
+        rgba(0,0,0,0.6);
+
+    filter:
+        blur(35px);
+
+}
+
+
+.interactive-camera img {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 90%;
+
+    height: 90%;
+
+    object-fit: contain;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.35s
+        cubic-bezier(.2,.7,.2,1);
+
+    cursor:
+        crosshair;
+
+}
+
+
+.interactive-camera img.changing {
+
+    opacity: 0;
+
+    transform:
+        scale(0.95);
+
+}
+
+
+.interactive-camera img.zoomed {
+
+    transform:
+        scale(1.35);
+
+    cursor:
+        zoom-out;
+
+}
+
+
+.zoom-hint {
+
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 30px;
+
+    z-index: 4;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    opacity: 0.35;
+
+}
+
+
+.zoom-button {
+
+    position: absolute;
+
+    right: 25px;
+
+    bottom: 20px;
+
+    z-index: 5;
+
+    width: 42px;
+
+    height: 42px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.3);
+
+    border-radius: 50%;
+
+    background:
+        rgba(0,0,0,0.3);
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease;
+
+}
+
+
+.zoom-button:hover {
+
+    background:
+        rgba(255,255,255,0.15);
+
+}
+
+
+/* =========================================================
+   CONTACT SHEET
+========================================================= */
+
+.contact-sheet {
+
+    max-width: 1400px;
+
+    margin:
+        2px auto 0;
+
+    background: #0b0b0b;
+
+}
+
+
+.contact-title {
+
+    padding:
+        20px 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    opacity: 0.4;
+
+}
+
+
+.contact-image {
+
+    padding: 30px;
+
+    background:
+        #101010;
+
+}
+
+
+.contact-image img {
+
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    transition:
+        transform 0.8s ease;
+
+}
+
+
+.contact-image:hover img {
+
+    transform:
+        scale(1.015);
+
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery-section {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 2px;
+
+    background: #000;
+
+}
+
+
+.gallery-item {
+
+    position: relative;
+
+    height: 650px;
+
+    overflow: hidden;
+
+    background: #111;
+
+}
+
+
+.gallery-item img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 1.3s
+        cubic-bezier(.2,.7,.2,1);
+
+}
+
+
+.gallery-item:hover img {
+
+    transform:
+        scale(1.07);
+
+}
+
+
+.gallery-item::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,0.75),
+            transparent 55%
+        );
+
+}
+
+
+.gallery-overlay {
+
+    position: absolute;
+
+    left: 35px;
+
+    bottom: 30px;
+
+    z-index: 2;
+
+}
+
+
+.gallery-overlay span {
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.5;
+
+}
+
+
+.gallery-overlay h3 {
+
+    margin-top: 8px;
+
+    font-size: 30px;
+
+    letter-spacing: 5px;
+
+}
+
+
+/* =========================================================
+   ENGINEERING
+========================================================= */
+
+.engineering-top {
+
+    position: relative;
+
+    z-index: 3;
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: end;
+
+}
+
+
+.engineering-top > p {
+
+    max-width: 300px;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    opacity: 0.4;
+
+}
+
+
+.exploded-container {
+
+    position: relative;
+
+    max-width: 1450px;
+
+    min-height: 650px;
+
+    margin:
+        80px auto 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+}
+
+
+.exploded-glow {
+
+    position: absolute;
+
+    width: 50%;
+
+    height: 30%;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.05);
+
+    filter:
+        blur(90px);
+
+}
+
+
+.exploded-image {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+
+    transition:
+        transform 0.5s
+        cubic-bezier(.2,.7,.2,1);
+
+}
+
+
+.exploded-line {
+
+    position: absolute;
+
+    z-index: 3;
+
+    width: 80px;
+
+    height: 1px;
+
+    background:
+        rgba(255,255,255,0.5);
+
+}
+
+
+.line-one {
+
+    left: 20%;
+
+    top: 47%;
+
+}
+
+
+.line-two {
+
+    left: 52%;
+
+    top: 44%;
+
+}
+
+
+.line-three {
+
+    right: 12%;
+
+    top: 45%;
+
+}
+
+
+.exploded-tag {
+
+    position: absolute;
+
+    z-index: 4;
+
+    padding:
+        9px 14px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.3);
+
+    background:
+        rgba(0,0,0,0.65);
+
+    backdrop-filter:
+        blur(10px);
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* =========================================================
+   UNBOXING
+========================================================= */
+
+.unboxing-player {
+
+    position: relative;
+
+}
+
+
+.video-label {
+
+    position: absolute;
+
+    top: 18px;
+
+    left: 18px;
+
+    z-index: 4;
+
+    padding:
+        7px 12px;
+
+    background:
+        rgba(0,0,0,0.65);
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .hero-corner {
+
+        display: none;
+
+    }
+
+
+    .camera-stage {
+
+        height: 48vh;
+
+        min-height: 300px;
+
+    }
+
+
+    .angle-explorer {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .angle-controls {
+
+        border-right: none;
+
+        border-bottom:
+            1px solid
+            rgba(255,255,255,0.1);
+
+        padding: 30px 20px;
+
+    }
+
+
+    .interactive-camera {
+
+        min-height: 430px;
+
+    }
+
+
+    .gallery-section {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .gallery-item {
+
+        height: 480px;
+
+    }
+
+
+    .engineering-top {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 30px;
+
+    }
+
+
+    .exploded-container {
+
+        min-height: 400px;
+
+    }
+
+
+    .exploded-line,
+    .exploded-tag {
+
+        display: none;
+
+    }
+
+
+    .contact-image {
+
+        padding: 15px;
+
+        overflow-x: auto;
+
+    }
+
+
+    .contact-image img {
+
+        width: 900px;
+
+        max-width: none;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .stage-info {
+
+        font-size: 6px;
+
+        letter-spacing: 2px;
+
+    }
+
+
+    .angle-button {
+
+        padding:
+            22px 0;
+
+    }
+
+
+    .interactive-camera {
+
+        min-height: 350px;
+
+    }
+
+
+    .zoom-hint {
+
+        display: none;
+
+    }
+
+
+    .gallery-item {
+
+        height: 400px;
+
+    }
+
+}

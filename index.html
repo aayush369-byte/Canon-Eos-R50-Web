@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>EOS R50 — Explore</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<header class="navbar" id="navbar">
+
+    <div class="logo">
+        EOS <span>R50</span>
+    </div>
+
+
+    <nav>
+
+        <a href="#explore">EXPLORE</a>
+
+        <a href="#angles">ANGLES</a>
+
+        <a href="#engineering">ENGINEERING</a>
+
+        <a href="#unboxing">UNBOXING</a>
+
+        <a href="#specs">SPECS</a>
+
+    </nav>
+
+
+    <div class="nav-progress">
+
+        <span id="progressBar"></span>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <video
+        class="hero-video"
+        src="assets/hero-180.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata">
+    </video>
+
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="hero-grid"></div>
+
+
+    <div class="hero-content">
+
+        <p class="eyebrow">
+            CANON / MIRRORLESS
+        </p>
+
+
+        <h1>
+            EOS
+            <span>R50</span>
+        </h1>
+
+
+        <p class="hero-subtitle">
+            Explore every angle.
+        </p>
+
+
+        <button
+            class="primary-button"
+            onclick="scrollToSection('explore')">
+
+            EXPLORE CAMERA
+
+        </button>
+
+    </div>
+
+
+    <div class="hero-corner top-left">
+        01
+    </div>
+
+
+    <div class="hero-corner bottom-right">
+        EOS R50 / EXPERIENCE
+    </div>
+
+
+    <div class="scroll-indicator">
+
+        <span></span>
+
+        SCROLL
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="intro">
+
+    <div class="intro-number">
+        01
+    </div>
+
+
+    <p class="eyebrow">
+        THE CAMERA
+    </p>
+
+
+    <h2>
+
+        Designed<br>
+
+        <span>to create.</span>
+
+    </h2>
+
+
+    <p class="intro-text">
+
+        A cinematic exploration of the
+        Canon EOS R50 — from its exterior
+        design to the engineering inside.
+
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     EXPLORE / VIDEO
+===================================================== -->
+
+<section
+    id="explore"
+    class="explore-section">
+
+
+    <div class="section-heading">
+
+        <p class="eyebrow">
+            02 / MOTION
+        </p>
+
+
+        <h2>
+
+            See the<br>
+
+            <span>movement.</span>
+
+        </h2>
+
+    </div>
+
+
+    <div
+        class="camera-stage"
+        id="cameraStage">
+
+
+        <div class="stage-glow"></div>
+
+
+        <video
+            id="mainVideo"
+            src="assets/hero-180.mp4"
+            muted
+            loop
+            playsinline
+            preload="metadata">
+        </video>
+
+
+        <div class="stage-crosshair">
+
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </div>
+
+
+    <div class="stage-info">
+
+        <span>
+            180° PRODUCT VIEW
+        </span>
+
+
+        <span>
+            EOS R50
+        </span>
+
+
+        <span>
+            <span id="videoTime">LOOP</span>
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     360 STYLE VIEW
+===================================================== -->
+
+<section
+    id="angles"
+    class="angles-section">
+
+
+    <div class="section-heading centered">
+
+        <p class="eyebrow">
+            03 / ANGLE EXPLORER
+        </p>
+
+
+        <h2>
+
+            One camera.<br>
+
+            <span>multiple perspectives.</span>
+
+        </h2>
+
+    </div>
+
+
+
+    <div class="angle-explorer">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="angle-controls">
+
+
+            <div class="angle-intro">
+
+                <span class="small-number">
+                    VIEW
+                </span>
+
+                <span id="angleNumber">
+                    01
+                </span>
+
+            </div>
+
+
+            <button
+                class="angle-button active"
+                data-image="assets/front.jpg"
+                data-title="FRONT"
+                data-number="01">
+
+                <span>01</span>
+
+                FRONT
+
+            </button>
+
+
+            <button
+                class="angle-button"
+                data-image="assets/side.jpg"
+                data-title="SIDE"
+                data-number="02">
+
+                <span>02</span>
+
+                SIDE
+
+            </button>
+
+
+            <button
+                class="angle-button"
+                data-image="assets/display.jpg"
+                data-title="DISPLAY"
+                data-number="03">
+
+                <span>03</span>
+
+                DISPLAY
+
+            </button>
+
+
+            <button
+                class="angle-button"
+                data-image="assets/lens.jpg"
+                data-title="LENS"
+                data-number="04">
+
+                <span>04</span>
+
+                LENS
+
+            </button>
+
+
+            <div class="angle-description">
+
+                <p id="angleDescription">
+                    The EOS R50 from the front,
+                    highlighting the compact
+                    camera body and RF lens.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CAMERA VIEW -->
+
+        <div
+            class="interactive-camera"
+            id="interactiveCamera">
+
+
+            <div class="camera-grid"></div>
+
+
+            <div class="camera-shadow"></div>
+
+
+            <img
+                id="interactiveImage"
+                src="assets/front.jpg"
+                alt="Canon EOS R50">
+
+
+            <div class="zoom-hint">
+
+                MOVE TO EXPLORE
+
+            </div>
+
+
+            <button
+                class="zoom-button"
+                id="zoomButton">
+
+                +
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- CONTACT SHEET -->
+
+    <div class="contact-sheet">
+
+        <div class="contact-title">
+
+            <span>
+                360° OVERVIEW
+            </span>
+
+            <span>
+                ANGLE MAP
+            </span>
+
+        </div>
+
+
+        <div class="contact-image">
+
+            <img
+                src="assets/angles.png"
+                alt="EOS R50 angle overview">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+<section class="gallery-section">
+
+
+    <div class="gallery-item reveal">
+
+        <img
+            src="assets/front.jpg"
+            alt="EOS R50 Front">
+
+
+        <div class="gallery-overlay">
+
+            <span>01</span>
+
+            <h3>FRONT</h3>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="gallery-item reveal">
+
+        <img
+            src="assets/side.jpg"
+            alt="EOS R50 Side">
+
+
+        <div class="gallery-overlay">
+
+            <span>02</span>
+
+            <h3>SIDE</h3>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="gallery-item reveal">
+
+        <img
+            src="assets/display.jpg"
+            alt="EOS R50 Display">
+
+
+        <div class="gallery-overlay">
+
+            <span>03</span>
+
+            <h3>DISPLAY</h3>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="gallery-item reveal">
+
+        <img
+            src="assets/lens.jpg"
+            alt="EOS R50 Lens">
+
+
+        <div class="gallery-overlay">
+
+            <span>04</span>
+
+            <h3>LENS</h3>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ENGINEERING
+===================================================== -->
+
+<section
+    id="engineering"
+    class="inside-section">
+
+
+    <div class="engineering-top">
+
+        <div>
+
+            <p class="eyebrow">
+                04 / ENGINEERING
+            </p>
+
+
+            <h2>
+
+                Inside<br>
+
+                <span>the camera.</span>
+
+            </h2>
+
+        </div>
+
+
+        <p>
+
+            Explore the architecture
+            behind the EOS R50.
+
+        </p>
+
+    </div>
+
+
+
+    <div
+        class="exploded-container"
+        id="explodedContainer">
+
+
+        <div class="exploded-glow"></div>
+
+
+        <img
+            class="exploded-image"
+            src="assets/exploded.png"
+            alt="EOS R50 exploded view">
+
+
+        <div class="exploded-line line-one"></div>
+
+        <div class="exploded-line line-two"></div>
+
+        <div class="exploded-line line-three"></div>
+
+
+        <div class="exploded-tag tag-one">
+            OPTICAL SYSTEM
+        </div>
+
+
+        <div class="exploded-tag tag-two">
+            CAMERA BODY
+        </div>
+
+
+        <div class="exploded-tag tag-three">
+            DISPLAY
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     UNBOXING
+===================================================== -->
+
+<section
+    id="unboxing"
+    class="unboxing-section">
+
+
+    <div class="unboxing-copy">
+
+        <p class="eyebrow">
+            05 / EXPERIENCE
+        </p>
+
+
+        <h2>
+
+            From box<br>
+
+            <span>to camera.</span>
+
+        </h2>
+
+
+        <p>
+
+            Experience the beginning
+            of the EOS R50 journey.
+
+        </p>
+
+    </div>
+
+
+    <div class="unboxing-player">
+
+        <video
+            id="unboxingVideo"
+            src="assets/unboxing.mp4"
+            controls
+            muted
+            playsinline>
+        </video>
+
+
+        <div class="video-label">
+
+            UNBOXING / 00:26
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SPECS
+===================================================== -->
+
+<section
+    id="specs"
+    class="specs-section">
+
+
+    <div class="section-heading centered">
+
+        <p class="eyebrow">
+            06 / SPECIFICATIONS
+        </p>
+
+
+        <h2>
+
+            Built for<br>
+
+            <span>creators.</span>
+
+        </h2>
+
+    </div>
+
+
+
+    <div class="spec-grid">
+
+
+        <div class="spec reveal">
+
+            <span class="spec-number">
+                01
+            </span>
+
+            <strong>
+                24.2
+            </strong>
+
+            <small>
+                MEGAPIXELS
+            </small>
+
+            <p>
+                APS-C CMOS sensor
+            </p>
+
+        </div>
+
+
+
+        <div class="spec reveal">
+
+            <span class="spec-number">
+                02
+            </span>
+
+            <strong>
+                4K
+            </strong>
+
+            <small>
+                VIDEO
+            </small>
+
+            <p>
+                High-resolution video
+            </p>
+
+        </div>
+
+
+
+        <div class="spec reveal">
+
+            <span class="spec-number">
+                03
+            </span>
+
+            <strong>
+                RF
+            </strong>
+
+            <small>
+                MOUNT
+            </small>
+
+            <p>
+                Canon RF lens ecosystem
+            </p>
+
+        </div>
+
+
+
+        <div class="spec reveal">
+
+            <span class="spec-number">
+                04
+            </span>
+
+            <strong>
+                X
+            </strong>
+
+            <small>
+                DIGIC
+            </small>
+
+            <p>
+                Image processing
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FINAL HERO
+===================================================== -->
+
+<section class="final-section">
+
+
+    <div class="final-overlay"></div>
+
+
+    <div class="final-content">
+
+        <p class="eyebrow">
+            EOS R50
+        </p>
+
+
+        <h2>
+
+            EVERY<br>
+
+            ANGLE.
+
+        </h2>
+
+
+        <button
+            class="primary-button"
+            onclick="window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })">
+
+            BACK TO TOP
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <span>
+        EOS R50 EXPERIENCE
+    </span>
+
+
+    <span>
+        INTERACTIVE CAMERA SHOWCASE
+    </span>
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
