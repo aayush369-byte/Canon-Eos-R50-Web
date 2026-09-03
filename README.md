@@ -1,57 +1,19 @@
-# Canon EOS R50 Web Experience
+# Canon EOS R50 Showcase
 
-A modern, interactive landing page for the Canon EOS R50 featuring cinematic sections, product perspectives, engineering details, unboxing, and specification highlights.
+A React and Vite product showcase for the Canon EOS R50, including an interactive 12-angle camera viewer, lens gallery, motion sections, and media fallbacks.
 
-## Features
-
-- Full-screen hero section with cinematic styling
-- Interactive angle explorer with image switching
-- Motion-focused product showcase
-- Engineering/exploded-view presentation
-- Unboxing experience section
-- Creator-focused specification grid
-- Smooth scrolling and modern responsive design
-
-## Tech Stack
-
-- HTML5
-- CSS3
-- JavaScript
-
-## Project Structure
+## Run locally
 
 ```bash
-.
-├── index.html
-├── style.css
-├── script.js
-├── assets/
-│   ├── hero-180.mp4
-│   ├── unboxing.mp4
-│   ├── front.jpg
-│   ├── side.jpg
-│   ├── display.jpg
-│   ├── lens.jpg
-│   ├── angles.png
-│   └── exploded.png
-├── README.md
-└── .gitignore
+npm install
+npm run dev
 ```
 
-## Run Locally
+Create a production build with `npm run build` and serve it with `npm run preview`.
 
-Open `index.html` directly in a browser, or serve the folder locally with a simple HTTP server:
+## Structure
 
-```bash
-python -m http.server 8000
-```
-
-Then visit:
-
-```text
-http://localhost:8000
-```
-
-## Author
-
-Aayush
+- `src/components/` - React UI components
+- `src/data/` - Static camera, lens, and feature data
+- `src/hooks/` - Shared React hooks
+- `public/assets/` - Static image and video media
