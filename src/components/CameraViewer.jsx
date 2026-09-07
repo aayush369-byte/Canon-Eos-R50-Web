@@ -32,6 +32,7 @@ export default function CameraViewer() {
   }, [next, prev])
 
   const onPointerDown = (e) => {
+    e.currentTarget.setPointerCapture?.(e.pointerId)
     dragState.current = { startX: e.clientX, dragging: true }
   }
   const onPointerMove = (e) => {
@@ -43,6 +44,7 @@ export default function CameraViewer() {
     if (dx > DRAG_THRESHOLD) prev()
     else if (dx < -DRAG_THRESHOLD) next()
     dragState.current.dragging = false
+    e.currentTarget.releasePointerCapture?.(e.pointerId)
   }
 
   const view = cameraViews[index]
@@ -58,6 +60,7 @@ export default function CameraViewer() {
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
         onPointerLeave={onPointerUp}
         className="relative select-none cursor-grab active:cursor-grabbing bg-gradient-to-b from-ink-charcoal to-ink rounded-sm
                    border border-ink-line overflow-hidden aspect-[4/3] md:aspect-[16/9] max-h-[70vh] mx-auto touch-pan-y"

@@ -33,13 +33,14 @@ export default function UnboxingSection() {
         <div ref={wrapRef} className="relative rounded-sm overflow-hidden border border-ink-line" data-reveal>
           <VideoWithFallback
             src="/assets/unboxing/Canon_EOS_R50_Unboxing.mp4"
-            poster="/assets/hero/00_Hero_EOS_R50.jpg"
-            className="w-full aspect-video bg-ink-charcoal object-cover"
+            poster="/assets/hero/00_Hero_EOS_R50.png"
+            className="relative w-full aspect-video bg-ink-charcoal"
             label="Unboxing video of the Canon EOS R50"
             autoPlay
-            // muted
+            muted
             loop
             playsInline
+            controls
             preload="metadata"
             aria-label="Unboxing video of the Canon EOS R50"
           />

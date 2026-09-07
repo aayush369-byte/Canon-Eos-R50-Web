@@ -8,7 +8,7 @@ export default function LensCard({ lens, onSelect }) {
     <article className="group flex-shrink-0 w-[220px] sm:w-[260px] md:w-[280px] snap-start">
       <button
         type="button"
-        onClick={() => onSelect(lens)}
+        onClick={(event) => onSelect(lens, event.currentTarget)}
         aria-label={`View details for ${lens.name}`}
         className="block w-full text-left"
       >

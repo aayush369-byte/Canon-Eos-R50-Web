@@ -38,8 +38,8 @@ export default function RotationSection() {
           <div className="absolute inset-0 vignette pointer-events-none z-10" aria-hidden="true" />
           <VideoWithFallback
             src="/assets/180-view/Canon_EOS_R50_180_View.mp4"
-            poster="/assets/hero/00_Hero_EOS_R50.jpg"
-            className="w-full aspect-video bg-ink-charcoal object-cover"
+            poster="/assets/hero/00_Hero_EOS_R50.png"
+            className="relative w-full aspect-video bg-ink-charcoal"
             autoPlay
             muted
             loop

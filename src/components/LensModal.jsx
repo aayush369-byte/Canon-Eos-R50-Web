@@ -4,15 +4,18 @@ import { ImageWithFallback } from './Media.jsx'
 import { lensesPath } from '../data/lenses.js'
 import gsap from 'gsap'
 
-export default function LensModal({ lens, onClose, onPrev, onNext }) {
+export default function LensModal({ lens, onClose, onPrev, onNext, returnFocusRef }) {
   const panelRef = useRef(null)
   const closeBtnRef = useRef(null)
 
   useEffect(() => {
     closeBtnRef.current?.focus()
     document.body.style.overflow = 'hidden'
-    return () => { document.body.style.overflow = '' }
-  }, [])
+    return () => {
+      document.body.style.overflow = ''
+      returnFocusRef?.current?.focus()
+    }
+  }, [returnFocusRef])
 
   useEffect(() => {
     if (!panelRef.current) return
@@ -25,21 +28,35 @@ export default function LensModal({ lens, onClose, onPrev, onNext }) {
     )
   }, [lens.id])
 
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === 'Escape') onClose()
-      if (e.key === 'ArrowLeft') onPrev()
-      if (e.key === 'ArrowRight') onNext()
+  const onKeyDown = (e) => {
+    if (e.key === 'Escape') {
+      e.preventDefault()
+      onClose()
+      return
     }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [onClose, onPrev, onNext])
+    if (e.key === 'ArrowLeft') onPrev()
+    if (e.key === 'ArrowRight') onNext()
+    if (e.key !== 'Tab' || !panelRef.current) return
+
+    const focusable = panelRef.current.querySelectorAll('button:not([disabled])')
+    const first = focusable[0]
+    const last = focusable[focusable.length - 1]
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault()
+      last.focus()
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault()
+      first.focus()
+    }
+  }
 
   return (
     <div
       role="dialog"
       aria-modal="true"
       aria-labelledby="lens-modal-heading"
+      aria-describedby="lens-modal-description"
+      onKeyDown={onKeyDown}
       className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10"
     >
       <div
@@ -92,7 +109,7 @@ export default function LensModal({ lens, onClose, onPrev, onNext }) {
             </div>
           </div>
 
-          <p className="mt-8 text-paper-dim text-sm leading-relaxed max-w-sm">{lens.description}</p>
+          <p id="lens-modal-description" className="mt-8 text-paper-dim text-sm leading-relaxed max-w-sm">{lens.description}</p>
 
           <div className="mt-10 flex items-center gap-3">
             <button

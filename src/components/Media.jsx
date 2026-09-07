@@ -1,5 +1,5 @@
 import React, { useState, forwardRef } from 'react'
-import { Camera, Video } from 'lucide-react'
+import { Camera, Play, RefreshCw, Video } from 'lucide-react'
 
 /**
  * ImageWithFallback
@@ -47,31 +47,66 @@ export const ImageWithFallback = forwardRef(function ImageWithFallback(
  * source file 404s, instead of showing an empty black box.
  */
 export function VideoWithFallback({ src, poster, className = '', label = 'Video coming soon', videoRef, ...rest }) {
-  const [failed, setFailed] = useState(false)
+  const [status, setStatus] = useState('loading')
+  const [attempt, setAttempt] = useState(0)
 
-  if (failed) {
-    return (
-      <div
-        className={`flex flex-col items-center justify-center gap-3 bg-ink-charcoal border border-ink-line text-paper-mute ${className}`}
-        role="img"
-        aria-label={label}
-      >
-        <Video size={28} strokeWidth={1.25} aria-hidden="true" />
-        <span className="text-xs tracking-wide uppercase">{label}</span>
-      </div>
-    )
+  const handleRef = (node) => {
+    if (typeof videoRef === 'function') videoRef(node)
+    else if (videoRef) videoRef.current = node
+  }
+
+  const retry = () => {
+    setStatus('loading')
+    setAttempt((value) => value + 1)
   }
 
   return (
-    <video
-      ref={videoRef}
-      className={className}
-      poster={poster}
-      onError={() => setFailed(true)}
-      {...rest}
-    >
-      <source src={src} type="video/mp4" />
-      Your browser does not support embedded video.
-    </video>
+    <div className={`relative overflow-hidden ${className}`}>
+      <video
+        key={`${src}-${attempt}`}
+        ref={handleRef}
+        className="absolute inset-0 h-full w-full object-cover"
+        poster={poster}
+        onCanPlay={() => setStatus('ready')}
+        onPlaying={() => setStatus('ready')}
+        onError={() => setStatus('failed')}
+        {...rest}
+      >
+        <source src={src} type="video/mp4" />
+        Your browser does not support embedded video.
+      </video>
+
+      {status !== 'ready' && (
+        <div
+          className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 bg-ink-charcoal/95 px-6 text-center text-paper-mute"
+          role={status === 'failed' ? 'alert' : 'status'}
+          aria-live="polite"
+        >
+          {poster && (
+            <img
+              src={poster}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover opacity-35"
+              aria-hidden="true"
+            />
+          )}
+          <div className="absolute inset-0 bg-ink/55" aria-hidden="true" />
+          <div className="relative z-10 flex flex-col items-center gap-3">
+            {status === 'failed' ? <Video size={28} strokeWidth={1.25} aria-hidden="true" /> : <Play size={28} strokeWidth={1.25} aria-hidden="true" />}
+            <span className="text-xs tracking-wide uppercase">{status === 'failed' ? `${label} unavailable` : 'Loading experience'}</span>
+            {status === 'failed' && (
+              <button
+                type="button"
+                onClick={retry}
+                className="inline-flex items-center gap-2 border border-canon-red px-4 py-2 text-[11px] tracking-[0.15em] uppercase text-paper transition-colors hover:bg-canon-red"
+              >
+                <RefreshCw size={14} aria-hidden="true" />
+                Try again
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
   )
 }

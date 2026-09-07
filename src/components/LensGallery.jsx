@@ -8,6 +8,7 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation.js'
 export default function LensGallery() {
   const [activeCategory, setActiveCategory] = useState('ALL')
   const [selectedLens, setSelectedLens] = useState(null)
+  const returnFocusRef = useRef(null)
   const trackRef = useRef(null)
 
   const filtered = useMemo(() => {
@@ -28,7 +29,10 @@ export default function LensGallery() {
     trackRef.current?.scrollBy({ left: dir * 320, behavior: 'smooth' })
   }
 
-  const handleSelect = (lens) => setSelectedLens(lens)
+  const handleSelect = (lens, trigger) => {
+    returnFocusRef.current = trigger
+    setSelectedLens(lens)
+  }
   const closeModal = () => setSelectedLens(null)
 
   const stepModal = (dir) => {
@@ -109,6 +113,7 @@ export default function LensGallery() {
           onClose={closeModal}
           onPrev={() => stepModal(-1)}
           onNext={() => stepModal(1)}
+          returnFocusRef={returnFocusRef}
         />
       )}
     </section>

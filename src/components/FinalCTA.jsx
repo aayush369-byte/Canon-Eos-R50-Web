@@ -24,7 +24,7 @@ export default function FinalCTA() {
     <section ref={ref} className="relative min-h-[90vh] flex items-center justify-center bg-black px-6 md:px-10 overflow-hidden" aria-labelledby="final-cta-heading">
       <div data-bg className="absolute inset-0">
         <ImageWithFallback
-          src="/assets/hero/00_Hero_EOS_R50.jpg"
+          src="/assets/hero/00_Hero_EOS_R50.png"
           alt="Canon EOS R50 mirrorless camera"
           className="absolute inset-0"
           imgClassName="w-full h-full object-cover opacity-30"

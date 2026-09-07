@@ -1,13 +1,8 @@
 import React from 'react'
-import { Instagram, Youtube, Facebook } from 'lucide-react'
-
 const FOOTER_LINKS = [
   { label: 'Camera', href: '#angles' },
   { label: 'Lenses', href: '#lenses' },
-  { label: 'Explore', href: '#inside' },
-  { label: 'Contact', href: '#contact' },
-  { label: 'Privacy', href: '#privacy' },
-  { label: 'Terms', href: '#terms' }
+  { label: 'Explore', href: '#inside' }
 ]
 
 export default function Footer() {
@@ -42,17 +37,6 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-4">
-          <a href="#" aria-label="Instagram (placeholder link)" className="text-paper-mute hover:text-canon-red transition-colors">
-            <Instagram size={18} />
-          </a>
-          <a href="#" aria-label="YouTube (placeholder link)" className="text-paper-mute hover:text-canon-red transition-colors">
-            <Youtube size={18} />
-          </a>
-          <a href="#" aria-label="Facebook (placeholder link)" className="text-paper-mute hover:text-canon-red transition-colors">
-            <Facebook size={18} />
-          </a>
-        </div>
       </div>
 
       <div className="max-w-[1600px] mx-auto mt-10 pt-6 border-t border-ink-line">
