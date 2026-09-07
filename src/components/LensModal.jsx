@@ -92,13 +92,13 @@ export default function LensModal({ lens, onClose, onPrev, onNext, returnFocusRe
           <X size={18} />
         </button>
 
-        <div className="relative flex items-center justify-center bg-ink-charcoal p-10 md:p-16">
+        <div className="relative min-h-[20rem] overflow-hidden bg-ink-charcoal sm:min-h-[28rem] md:min-h-[34rem]">
           <div className="pointer-events-none absolute inset-0 vignette" aria-hidden="true" />
           <ImageWithFallback
             src={`${lensesPath}${lens.file}`}
             alt={`${lens.name} lens, full product view`}
-            className="relative aspect-square w-full"
-            imgClassName="h-full w-full object-contain"
+            className="relative h-full w-full"
+            imgClassName="h-full w-full object-cover object-center"
             eager
           />
         </div>

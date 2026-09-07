@@ -42,12 +42,12 @@ function StoryBlock({ story }) {
         </div>
 
         <div className={`relative ${imageFirst ? 'md:order-1' : 'md:order-2'}`} data-reveal>
-          <div data-parallax>
+          <div data-parallax className="overflow-hidden border border-ink-line bg-[#0b0b0d]">
             <ImageWithFallback
               src={`${cameraViewsPath}${STORY_IMAGES[story.id]}`}
               alt={`Canon EOS R50 — ${story.heading}`}
-              className="relative w-full aspect-[4/5] md:aspect-[3/4] bg-ink-charcoal border border-ink-line"
-              imgClassName="w-full h-full object-contain p-8 md:p-12"
+              className="relative aspect-[4/3] w-full bg-[#0b0b0d] md:aspect-[3/2]"
+              imgClassName="h-full w-full object-contain"
             />
           </div>
         </div>

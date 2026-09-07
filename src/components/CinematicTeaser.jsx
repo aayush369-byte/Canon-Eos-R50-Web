@@ -102,7 +102,7 @@ export default function CinematicTeaser() {
   }
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-ink-soft py-24 md:py-36 px-6 md:px-10" aria-labelledby="teaser-heading">
+    <section id="short-film" ref={ref} className="relative overflow-hidden bg-ink-soft py-24 md:py-36 px-6 md:px-10" aria-labelledby="teaser-heading">
       <div className="max-w-[1400px] mx-auto">
         <div className="max-w-2xl mx-auto mb-12 md:mb-16 text-center" data-reveal>
           <p className="text-canon-red text-xs tracking-[0.25em] uppercase mb-4">A short film</p>

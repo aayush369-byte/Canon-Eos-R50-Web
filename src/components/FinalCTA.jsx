@@ -21,7 +21,7 @@ export default function FinalCTA() {
   }
 
   return (
-    <section ref={ref} className="relative min-h-[90vh] flex items-center justify-center bg-black px-6 md:px-10 overflow-hidden" aria-labelledby="final-cta-heading">
+    <section ref={ref} className="relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-black px-6 md:px-10" aria-labelledby="final-cta-heading">
       <div data-bg className="absolute inset-0">
         <ImageWithFallback
           src="/assets/hero/00_Hero_EOS_R50.png"
@@ -29,33 +29,44 @@ export default function FinalCTA() {
           className="absolute inset-0"
           imgClassName="w-full h-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,11,0.25),rgba(10,10,11,0.9)_52%,rgba(10,10,11,1)_100%)]" />
         <div className="absolute inset-0 vignette" />
       </div>
 
-      <div className="relative z-10 text-center max-w-2xl">
-        <p className="text-canon-red text-xs tracking-[0.25em] uppercase mb-6" data-reveal>EOS R50</p>
-        <h2 id="final-cta-heading" className="font-display font-light text-4xl sm:text-5xl md:text-7xl tracking-tightest text-paper text-balance" data-reveal>
-          Create without limits.
-        </h2>
+      <div className="relative z-10 w-full max-w-5xl">
+        <div className="luxury-panel mx-auto max-w-3xl text-center" data-reveal>
+          <p className="text-canon-red text-[10px] tracking-[0.28em] uppercase mb-6">EOS R50</p>
+          <h2 id="final-cta-heading" className="font-display font-light text-4xl sm:text-5xl md:text-7xl tracking-tightest text-paper text-balance">
+            The next frame is yours.
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-paper-dim md:text-lg">
+            Built for creators who move between stories, details and motion without compromising the moment.
+          </p>
 
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4" data-reveal>
-          <button
-            type="button"
-            onClick={() => scrollTo('#angles')}
-            className="w-full sm:w-auto border border-canon-red bg-canon-red text-paper px-8 py-4 text-xs tracking-[0.15em] uppercase
-                       hover:bg-canon-deep hover:border-canon-deep transition-colors duration-300"
-          >
-            Explore EOS R50
-          </button>
-          <button
-            type="button"
-            onClick={() => scrollTo('#lenses')}
-            className="w-full sm:w-auto border border-ink-line text-paper px-8 py-4 text-xs tracking-[0.15em] uppercase
-                       hover:border-paper transition-colors duration-300"
-          >
-            Explore Lenses
-          </button>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-[9px] uppercase tracking-[0.2em] text-paper-mute" data-reveal>
+            {['4K video', 'Dual Pixel AF', 'RF mount', 'Portable power'].map((item) => (
+              <span key={item} className="rounded-full border border-white/10 bg-white/5 px-3 py-2">
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row" data-reveal>
+            <button
+              type="button"
+              onClick={() => scrollTo('#angles')}
+              className="premium-button premium-button-primary w-full sm:w-auto"
+            >
+              Explore EOS R50
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollTo('#lenses')}
+              className="premium-button premium-button-secondary w-full sm:w-auto"
+            >
+              Explore Lenses
+            </button>
+          </div>
         </div>
       </div>
     </section>

@@ -9,18 +9,47 @@ export default function CameraViewer() {
   const [index, setIndex] = useState(0)
   const [dragging, setDragging] = useState(false)
   const [dragOffset, setDragOffset] = useState(0)
+  const [preloaded, setPreloaded] = useState(false)
+  const [selectedAngle, setSelectedAngle] = useState(cameraViews[0].label)
   const dragState = useRef({ startX: 0, dragging: false, interactionAt: 0 })
   const trackRef = useRef(null)
 
   const total = cameraViews.length
 
   const goTo = useCallback((next) => {
-    setIndex(((next % total) + total) % total)
+    const nextIndex = ((next % total) + total) % total
+    setIndex(nextIndex)
+    setSelectedAngle(cameraViews[nextIndex].label)
     dragState.current.interactionAt = Date.now()
   }, [total])
 
   const next = useCallback(() => goTo(index + 1), [goTo, index])
   const prev = useCallback(() => goTo(index - 1), [goTo, index])
+
+  useEffect(() => {
+    let cancelled = false
+    const loadSequence = () => {
+      const images = cameraViews.map((view) => {
+        const img = new Image()
+        img.src = `${cameraViewsPath}${view.file}`
+        return img
+      })
+
+      Promise.all(
+        images.map((img) => new Promise((resolve) => {
+          img.onload = resolve
+          img.onerror = resolve
+        }))
+      ).then(() => {
+        if (!cancelled) setPreloaded(true)
+      })
+    }
+
+    loadSequence()
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -47,6 +76,7 @@ export default function CameraViewer() {
   }, [next, prev])
 
   const onPointerDown = (event) => {
+    event.preventDefault()
     event.currentTarget.setPointerCapture?.(event.pointerId)
     dragState.current = { startX: event.clientX, dragging: true, interactionAt: Date.now() }
     setDragging(true)
@@ -70,6 +100,15 @@ export default function CameraViewer() {
     event.currentTarget.releasePointerCapture?.(event.pointerId)
   }
 
+  const onStageClick = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect()
+    const x = (event.clientX - rect.left) / rect.width
+
+    if (x < 0.35) prev()
+    else if (x > 0.65) next()
+    else setSelectedAngle(cameraViews[index].label)
+  }
+
   const view = cameraViews[index]
 
   return (
@@ -85,8 +124,16 @@ export default function CameraViewer() {
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
         onPointerLeave={onPointerUp}
-        className="relative mx-auto aspect-[4/3] max-h-[70vh] select-none overflow-hidden rounded-sm border border-ink-line bg-gradient-to-b from-ink-charcoal to-ink md:aspect-[16/9]"
+        onClick={onStageClick}
+        className="camera-stage relative mx-auto aspect-[4/3] max-h-[70vh] select-none overflow-hidden rounded-sm border border-ink-line bg-gradient-to-b from-ink-charcoal to-ink md:aspect-[16/9]"
+        style={{ touchAction: 'pan-y', cursor: dragging ? 'grabbing' : 'grab' }}
       >
+        {!preloaded && (
+          <div className="absolute inset-0 z-30 flex items-center justify-center bg-ink/80 text-[10px] uppercase tracking-[0.2em] text-paper-mute">
+            Loading frames
+          </div>
+        )}
+
         <div className="pointer-events-none absolute inset-0 z-10 vignette" aria-hidden="true" />
 
         {cameraViews.map((v, i) => (

@@ -33,6 +33,7 @@ export default function LensGallery() {
     returnFocusRef.current = trigger
     setSelectedLens(lens)
   }
+
   const closeModal = () => setSelectedLens(null)
 
   const stepModal = (dir) => {
@@ -48,13 +49,12 @@ export default function LensGallery() {
         <div className="max-w-2xl mb-10" data-reveal>
           <p className="text-canon-red text-xs tracking-[0.25em] uppercase mb-4">The RF & RF-S ecosystem</p>
           <h2 id="lenses-heading" className="font-display font-light text-4xl md:text-6xl tracking-tightest text-paper text-balance">
-            Explore the lenses
+            Find the perfect angle.
           </h2>
-          <p className="mt-4 text-paper-dim text-base md:text-lg">Twelve lenses. Every focal length you create with.</p>
+          <p className="mt-4 text-paper-dim text-base md:text-lg">Choose the lens that matches the story you want to tell.</p>
         </div>
 
-        {/* Category filter */}
-        <div className="flex flex-wrap gap-2 mb-10" data-reveal role="group" aria-label="Filter lenses by category">
+        <div className="mb-10 flex flex-wrap gap-2" data-reveal role="group" aria-label="Filter lenses by category">
           {lensCategories.map((cat) => (
             <button
               key={cat}
@@ -72,7 +72,6 @@ export default function LensGallery() {
           ))}
         </div>
 
-        {/* Horizontal scroll gallery */}
         <div className="relative" data-reveal>
           <div
             ref={trackRef}

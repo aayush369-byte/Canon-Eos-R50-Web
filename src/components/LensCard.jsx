@@ -15,8 +15,8 @@ export default function LensCard({ lens, onSelect }) {
         <ImageWithFallback
           src={`${lensesPath}${lens.file}`}
           alt={`${lens.name} lens`}
-          className="w-full aspect-[4/5] bg-ink-charcoal border border-ink-line group-hover:border-canon-red/60 transition-colors duration-300"
-          imgClassName="w-full h-full object-contain p-8 transition-transform duration-500 ease-cinematic group-hover:scale-[1.04]"
+          className="aspect-[4/3] w-full border border-ink-line bg-ink-charcoal transition-colors duration-300 group-hover:border-canon-red/60"
+          imgClassName="h-full w-full object-cover object-center transition-transform duration-500 ease-cinematic group-hover:scale-[1.04]"
         />
         <div className="mt-4">
           <p className="text-paper-mute text-[11px] tracking-[0.18em] uppercase">{lens.type}</p>

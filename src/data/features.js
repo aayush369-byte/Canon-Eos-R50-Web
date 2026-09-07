@@ -20,7 +20,7 @@ export const featureStories = [
   },
   {
     id: 'focus',
-    eyebrow: 'FOCUS',
+    eyebrow: 'STAY FOCUSED',
     heading: 'Stay focused on the moment.',
     body: 'Dual Pixel CMOS AF II tracks people, animals and vehicles, keeping focus locked while you shoot.',
     align: 'right'
