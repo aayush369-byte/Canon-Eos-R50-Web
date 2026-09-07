@@ -12,7 +12,7 @@ export default function Features() {
   }, [])
 
   return (
-    <section ref={ref} className="relative bg-ink-soft py-24 md:py-32 px-6 md:px-10 border-y border-ink-line" aria-labelledby="features-heading">
+    <section id="features" ref={ref} className="relative bg-ink-soft py-24 md:py-32 px-6 md:px-10 border-y border-ink-line" aria-labelledby="features-heading">
       <div className="max-w-[1600px] mx-auto">
         <p id="features-heading" className="text-canon-red text-xs tracking-[0.25em] uppercase mb-10 md:mb-14 text-center" data-reveal>
           Featured

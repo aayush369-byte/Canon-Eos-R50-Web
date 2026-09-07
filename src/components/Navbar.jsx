@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ArrowRight } from 'lucide-react'
 
 const LINKS = [
-  { label: 'EOS R50', href: '#hero' },
+  { label: 'Overview', href: '#overview' },
   { label: 'Camera', href: '#angles' },
-  { label: 'Lenses', href: '#lenses' },
-  { label: 'Explore', href: '#inside' }
+  { label: 'Features', href: '#features' },
+  { label: 'Lens', href: '#lenses' },
+  { label: 'Gallery', href: '#gallery' },
+  { label: 'Specs', href: '#specs' }
 ]
 
 export default function Navbar() {
@@ -13,50 +15,48 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
+    const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = open ? 'hidden' : previousOverflow
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
   }, [open])
 
   const handleNavClick = useCallback((href) => {
     setOpen(false)
     const target = document.querySelector(href)
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
   }, [])
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'bg-ink/80 backdrop-blur-md border-b border-ink-line' : 'bg-transparent border-b border-transparent'
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        scrolled ? 'border-b border-ink-line bg-ink/70 backdrop-blur-md' : 'border-b border-transparent bg-transparent'
       }`}
     >
-      <nav
-        aria-label="Primary"
-        className="max-w-[1600px] mx-auto flex items-center justify-between px-6 md:px-10 h-16 md:h-20"
-      >
-        <a href="#hero" onClick={(e) => { e.preventDefault(); handleNavClick('#hero') }} className="flex items-baseline gap-2 group">
-          <span className="font-display font-semibold tracking-tight text-sm md:text-base text-paper">CANON</span>
-          <span className="hidden sm:inline text-paper-mute text-sm">|</span>
-          <span className="hidden sm:inline font-display font-light tracking-tight text-sm md:text-base text-paper-dim group-hover:text-canon-red transition-colors">
-            EOS R50
-          </span>
+      <nav aria-label="Primary" className="mx-auto flex h-16 max-w-[1600px] items-center justify-between px-6 md:h-20 md:px-10">
+        <a href="#hero" onClick={(e) => { e.preventDefault(); handleNavClick('#hero') }} className="group flex items-center gap-3" aria-label="Go to hero section">
+          <span className="font-display text-sm font-semibold tracking-[0.16em] text-paper md:text-base">CANON</span>
+          <span className="hidden text-paper-mute sm:inline">|</span>
+          <span className="hidden font-display text-sm font-light tracking-tight text-paper-dim transition-colors group-hover:text-canon-red sm:inline md:text-base">EOS R50</span>
         </a>
 
-        <ul className="hidden md:flex items-center gap-9">
+        <ul className="hidden items-center gap-7 md:flex">
           {LINKS.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); handleNavClick(link.href) }}
-                className="relative text-[13px] tracking-[0.12em] uppercase text-paper-dim hover:text-paper transition-colors py-2
-                           after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[1.5px] after:w-0 after:bg-canon-red
-                           after:transition-all after:duration-300 hover:after:w-full"
+                className="relative py-2 text-[11px] uppercase tracking-[0.18em] text-paper-dim transition-colors hover:text-paper after:absolute after:-bottom-[1px] after:left-0 after:h-px after:w-0 after:bg-canon-red after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.label}
               </a>
@@ -64,33 +64,42 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          className="flex items-center gap-2 text-paper text-[13px] tracking-[0.12em] uppercase"
-        >
-          <span className="hidden sm:inline">Menu</span>
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex items-center gap-3">
+          <a
+            href="#specs"
+            onClick={(e) => { e.preventDefault(); handleNavClick('#specs') }}
+            className="hidden items-center gap-2 border border-canon-red/70 bg-canon-red/10 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-paper transition-colors hover:bg-canon-red md:inline-flex"
+          >
+            Specs
+            <ArrowRight size={14} aria-hidden="true" />
+          </a>
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            className="flex items-center justify-center rounded-full border border-ink-line bg-ink/40 p-2 text-paper transition-colors hover:border-canon-red hover:text-canon-red md:hidden"
+          >
+            {open ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </nav>
 
-      {/* Mobile menu */}
       <div
         id="mobile-menu"
-        className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-500 ease-cinematic bg-ink/95 backdrop-blur-md border-b border-ink-line ${
-          open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        className={`overflow-hidden border-b border-ink-line bg-ink/95 backdrop-blur-md transition-all duration-500 md:hidden ${
+          open ? 'max-h-[420px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <ul className="flex flex-col px-6 py-4 gap-1">
+        <ul className="flex flex-col px-6 py-4">
           {LINKS.map((link) => (
-            <li key={link.href}>
+            <li key={link.href} className="border-b border-ink-line last:border-none">
               <a
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); handleNavClick(link.href) }}
-                className="block py-3 text-sm tracking-[0.12em] uppercase text-paper-dim hover:text-canon-red transition-colors border-b border-ink-line last:border-none"
+                className="block py-3 text-sm uppercase tracking-[0.18em] text-paper-dim transition-colors hover:text-paper"
               >
                 {link.label}
               </a>

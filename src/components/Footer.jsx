@@ -1,8 +1,11 @@
 import React from 'react'
 const FOOTER_LINKS = [
+  { label: 'Overview', href: '#overview' },
   { label: 'Camera', href: '#angles' },
-  { label: 'Lenses', href: '#lenses' },
-  { label: 'Explore', href: '#inside' }
+  { label: 'Features', href: '#features' },
+  { label: 'Lens', href: '#lenses' },
+  { label: 'Gallery', href: '#gallery' },
+  { label: 'Specs', href: '#specs' }
 ]
 
 export default function Footer() {
